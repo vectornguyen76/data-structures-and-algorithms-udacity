@@ -25,36 +25,37 @@ Print a message:
 The list of numbers should be print out one per line in lexicographic order with no duplicates.
 """
 
-list_caller = []
+# Initialize sets to store numbers that make outgoing calls and numbers involved in texts or incoming calls
+outgoing_calls = set()
+text_receivers = set()
+text_senders = set()
+incoming_call_receivers = set()
 
+# Populate the sets based on the data from 'texts' and 'calls' lists
 for call in calls:
-    list_caller.append(call[0])
+    outgoing_calls.add(call[0])
+    incoming_call_receivers.add(call[1])
 
-set_caller = set(list_caller)
-    
 for text in texts:
-    if text[0] in set_caller:
-        set_caller.remove(text[0])
-        
-    if text[1] in set_caller:
-        set_caller.remove(text[1])
+    text_senders.add(text[0])
+    text_receivers.add(text[1])
 
-for call in calls:
-    if call[1] in set_caller:
-        set_caller.remove(call[1])
-    
-list_telemarketers = list(set_caller)
-print("These numbers could be telemarketers: ")
-for caller in list_telemarketers:
-    print(caller)
+# Identify possible telemarketers (outgoing calls - (text senders + incoming call receivers))
+possible_telemarketers = outgoing_calls - (text_senders | incoming_call_receivers)
+
+# Sort the possible telemarketers lexicographically
+sorted_possible_telemarketers = sorted(possible_telemarketers)
+
+# Print the results
+print("These numbers could be telemarketers:")
+for number in sorted_possible_telemarketers:
+    print(number)
 
 # Calculate Big O
 '''
-1. Creating the list_caller list by iterating through the calls list takes O(N) time, where N is the number of items in the calls list.
-2. Creating the set_caller set from list_caller also takes O(N) time because it involves iterating through list_caller once to remove duplicates.
-3. Iterating through the texts list to remove numbers from set_caller takes O(M) time, where M is the number of items in the texts list. 
-In the worst case, all numbers in texts are unique, resulting in O(M) removal operations from set_caller.
-4. Iterating through the calls list again to remove numbers from set_caller takes O(N) time, where N is the number of items in the calls list.
-5. Converting set_caller to list_telemarketers takes O(N) time because it involves copying all unique numbers from the set to a list.
-6. Printing the potential telemarketer numbers is also a linear operation because iterating through the list_telemarketers, so it takes O(N) time
+- Initializing the sets has a constant time complexity, O(1).
+- Populating the sets based on 'calls' and 'texts' data has time complexities of O(n) and O(m), respectively, where n is the number of calls, and m is the number of texts.
+- Identifying possible telemarketers involves set operations (subtraction and union), which take O(n + m) time.
+- Sorting the 'sorted_possible_telemarketers' set using sorted() has a time complexity of O(k * log(k)), where k is the number of possible telemarketers.
+- Printing the results has a time complexity of O(k), where k is the number of possible telemarketers.
 '''

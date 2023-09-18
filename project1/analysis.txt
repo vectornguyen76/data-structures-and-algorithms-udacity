@@ -27,10 +27,8 @@ Task3:
 - Printing the sorted codes and the percentage calculation are also O(1).
 
 Task4:
-- Creating the list_caller list by iterating through the calls list takes O(N) time, where N is the number of items in the calls list.
-- Creating the set_caller set from list_caller also takes O(N) time because it involves iterating through list_caller once to remove duplicates.
-- Iterating through the texts list to remove numbers from set_caller takes O(M) time, where M is the number of items in the texts list. 
-In the worst case, all numbers in texts are unique, resulting in O(M) removal operations from set_caller.
-- Iterating through the calls list again to remove numbers from set_caller takes O(N) time, where N is the number of items in the calls list.
-- Converting set_caller to list_telemarketers takes O(N) time because it involves copying all unique numbers from the set to a list.
-- Printing the potential telemarketer numbers is also a linear operation because iterating through the list_telemarketers, so it takes O(N) time
+- Initializing the sets has a constant time complexity, O(1).
+- Populating the sets based on 'calls' and 'texts' data has time complexities of O(n) and O(m), respectively, where n is the number of calls, and m is the number of texts.
+- Identifying possible telemarketers involves set operations (subtraction and union), which take O(n + m) time.
+- Sorting the 'sorted_possible_telemarketers' set using sorted() has a time complexity of O(k * log(k)), where k is the number of possible telemarketers.
+- Printing the results has a time complexity of O(k), where k is the number of possible telemarketers.
