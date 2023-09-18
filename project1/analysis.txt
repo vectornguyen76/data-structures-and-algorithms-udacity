@@ -1,0 +1,36 @@
+Task0:
+- The overall time complexity of this code snippet is O(1) because the execution time does not depend on the size of the input lists texts and calls.
+
+Task1:
+- Iterating through the texts list involves a loop that goes through each item in the list once. 
+The same applies to the loop for the calls list. Each iteration of these loops involves appending two elements to the list_telephone. 
+Therefore, the time complexity for these loops is O(N), where N is the total number of elements in both texts and calls combined.
+
+- Creating a set from the list_telephone using set(list_telephone) takes O(N) time in the worst case 
+because it needs to iterate through all elements to identify unique values.
+
+- Finally, calculating the length of the set using len(set(list_telephone)) is a constant-time operation and can be considered O(1).
+
+Task2:
+- Iterating through the calls list involves a loop that goes through each item in the list once. 
+In each iteration, perform dictionary lookups and updates, both of which are typically O(1) operations on average. 
+Therefore, the time complexity of this loop is O(N), where N is the number of items in the calls list.
+
+- Finding the telephone number that spent the longest time on the phone involves iterating 
+through the keys in the dict_telephone dictionary to find the maximum value. 
+This operation also has a time complexity of O(N), where N is the number of unique telephone numbers in the calls list.
+
+Task3:
+- The loop that iterates through the 'calls' data has a complexity of O(n), where n is the number of calls.
+- Inside the loop, there are various operations that have a constant time complexity, denoted as O(1).
+- Sorting the 'codes_called' set using sorted() has a time complexity of O(m * log(m)), where m is the number of distinct codes.
+- Printing the sorted codes and the percentage calculation are also O(1).
+
+Task4:
+- Creating the list_caller list by iterating through the calls list takes O(N) time, where N is the number of items in the calls list.
+- Creating the set_caller set from list_caller also takes O(N) time because it involves iterating through list_caller once to remove duplicates.
+- Iterating through the texts list to remove numbers from set_caller takes O(M) time, where M is the number of items in the texts list. 
+In the worst case, all numbers in texts are unique, resulting in O(M) removal operations from set_caller.
+- Iterating through the calls list again to remove numbers from set_caller takes O(N) time, where N is the number of items in the calls list.
+- Converting set_caller to list_telemarketers takes O(N) time because it involves copying all unique numbers from the set to a list.
+- Printing the potential telemarketer numbers is also a linear operation because iterating through the list_telemarketers, so it takes O(N) time
