@@ -13,3 +13,10 @@ To solve problems, a precise sequence of steps is required to transform the give
 
 ## Advanced Algorithms
 In this final segment of the program, we delve into more advanced topics, including greedy algorithms, graph algorithms, dynamic programming, and linear programming.
+
+## Certificate
+   <p align="center">
+   <img src="./certificate.png" alt="Certificate" />
+   <br>
+   <em>Certificate</em>
+   </p>

@@ -54,6 +54,7 @@ class Router:
 router = Router("root handler", "not found handler")
 router.add_handler("/home/about", "about handler")
 
+print(router.lookup(""))  # should print 'root handler'
 print(router.lookup("/"))  # should print 'root handler'
 print(router.lookup("/home"))  # should print 'not found handler'
 print(router.lookup("/home/about"))  # should print 'about handler'

@@ -1,13 +1,39 @@
 # Problem 7: Request Routing in a Web Server with a Trie
 
-This code defines a router using a data structure called RouteTrie. The router is implemented using three classes: RouteTrie, RouteTrieNode, and Router. The router is responsible for handling requests and routing them to the appropriate handlers based on the path.
+This code implements a route handling system using a Route Trie and a Router. The Route Trie is used to store routes and their associated handlers, and the Router class handles the routing of incoming requests to the appropriate handlers.
 
-## Reasoning Behind Code Decisions
+## RouteTrie
 
-1. **RouteTrie Class**: This class represents the router's routing tree. It contains methods to insert routes (with their associated handlers) and find handlers for a given path. The Trie data structure efficiently stores and searches for routes. Each node in the Trie represents a part of the path.
+The `RouteTrie` class is responsible for storing routes and their handlers. It uses a tree structure where each node represents a part of the route. The key functions of the `RouteTrie` class are:
 
-2. **RouteTrieNode Class**: This class defines nodes in the routing tree. Each node has children nodes for different path parts and an optional handler for that specific path. The TrieNode data structure is similar to a prefix tree used for autocomplete.
+- `insert(self, path_parts, handler)`: Inserts a route into the Route Trie by iteratively creating nodes for each part of the route and associating the final node with the given handler.
 
-3. **Router Class**: This class wraps the RouteTrie and handles adding routes with their associated handlers and looking up handlers for a given path. It also provides a "not found" handler to be used when no matching route is found.
+- `find(self, path_parts)`: Searches for a route in the Route Trie by traversing the tree according to the path parts. If the full route is found, it returns the associated handler; otherwise, it returns None.
 
-4. **Efficiency**: The Trie data structure used in the RouteTrie efficiently handles routing. It reduces the lookup time for routes by efficiently traversing the Trie based on the path components. The time complexity of looking up a route is O(m), where m is the number of path components. Inserting a route into the Trie has a time complexity of O(m).
+## RouteTrieNode
+
+The `RouteTrieNode` class represents a single node in the Route Trie. It contains a dictionary of children nodes and an optional handler associated with the route ending at that node.
+
+## Router
+
+The `Router` class wraps the Route Trie and provides high-level functionality for adding handlers to routes and looking up handlers for specific routes. It contains the following key methods:
+
+- `add_handler(self, path, handler)`: Adds a handler for a specific route by splitting the path into parts and inserting it into the Route Trie.
+
+- `lookup(self, path)`: Looks up and returns the handler associated with a specific route.
+
+- `split_path(self, path)`: Splits a route path into its constituent parts. This is useful for parsing and processing route paths.
+
+## Efficiency
+
+- **Time Complexity**:
+
+    - Insertion of a route into the Route Trie has a time complexity of O(K), where K is the number of parts (segments) in the route. This is because we iterate through each part of the route to insert it into the trie.
+    
+    - Looking up a route in the Route Trie also has a time complexity of O(K) since it involves iterating through the parts of the route to find the associated handler.
+
+    - Splitting a route path into parts has a time complexity of O(N), where N is the length of the path. In the worst case, this is a linear operation.
+
+- **Space Complexity**:
+
+    - The space complexity of the Route Trie depends on the number of unique route parts and the number of routes. In the worst case, where all routes are distinct, the space complexity is O(N), where N is the total number of parts in all routes.
